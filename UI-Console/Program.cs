@@ -4,6 +4,7 @@ using Services.Domain;
 using Services.Facade;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,12 @@ namespace UI_Console
             UserService.Register(user);
 
             Console.WriteLine("Test de github");
+
+            //Probemos leer el archivo de configuración:
+
+            Console.WriteLine($"Leyendo el path del log {ConfigurationManager.AppSettings["FileLogPath"]}");
+            Console.WriteLine($"Leyendo conn app {ConfigurationManager.ConnectionStrings["AppSqlConnection"].ConnectionString}");
+
 
         }
     }
