@@ -22,6 +22,8 @@ namespace UI_Console
             User user = new User();
             UserService.Register(user);
 
+            Console.WriteLine("Test de github");
+
         }
     }
 }
