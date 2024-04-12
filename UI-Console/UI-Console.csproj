@@ -51,6 +51,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dao\Dao.csproj">
+      <Project>{0785b123-8c33-43ad-8b4a-4111365031a3}</Project>
+      <Name>Dao</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{b2e2efeb-9b42-4a52-a3ad-0815e7597bad}</Project>
       <Name>Domain</Name>

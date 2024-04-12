@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,7 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomerDao.cs" />
+    <Compile Include="Contracts\IGenericDao.cs" />
+    <Compile Include="Helpers\SqlHelper.cs" />
+    <Compile Include="Implementations\Memory\CustomerDao.cs" />
+    <Compile Include="Implementations\SqlServer\CustomerDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +53,10 @@
       <Project>{b2e2efeb-9b42-4a52-a3ad-0815e7597bad}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Factory\" />
+    <Folder Include="Implementations\Serialization\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
