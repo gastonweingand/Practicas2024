@@ -23,7 +23,7 @@ namespace Dao.Contracts
 
         void Remove(T obj);
 
-        T GetById(int id);
+        T GetById(Guid id);
 
         List<T> GetAll();
 

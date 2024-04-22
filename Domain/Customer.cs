@@ -11,7 +11,7 @@ namespace Domain
     /// </summary>
     public class Customer
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public int Code { get; set; }
 
         public string Name { get; set; }

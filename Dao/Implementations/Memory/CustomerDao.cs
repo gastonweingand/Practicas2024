@@ -1,6 +1,7 @@
 ﻿using Dao.Contracts;
 using Domain;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,21 +9,31 @@ using System.Threading.Tasks;
 
 namespace Dao.Implementations.Memory
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public class CustomerDao : IGenericDao<Customer>
+    public sealed class CustomerDao : IGenericDao<Customer>
     {
-        private List<Customer> _list = new List<Customer>();
+        #region singleton
+        private readonly static CustomerDao  _instance = new CustomerDao ();
 
-        public CustomerDao() {
-        
-            for (int i = 1; i <= 10; i++) {
+        public static CustomerDao Current
+        {
+            get
+            {
+                return _instance;
+            }
+        }
+
+        private CustomerDao()
+        {
+            for (int i = 1; i <= 10; i++)
+            {
                 Customer customer = new Customer(i + 1, i.ToString());
-                customer.Id = i;
+                customer.Id = Guid.NewGuid();
                 _list.Add(customer);
             }
         }
+        #endregion
+
+        private static List<Customer> _list = new List<Customer>();
 
         public void Add(Customer obj)
         {
@@ -31,7 +42,7 @@ namespace Dao.Implementations.Memory
             //envío el id
 
             //Simulamos que el id es auto-incremental
-            obj.Id = _list.Count + 1;
+            obj.Id = Guid.NewGuid();
             _list.Add(obj);
         }
 
@@ -40,14 +51,14 @@ namespace Dao.Implementations.Memory
             return _list;
         }
 
-        public Customer GetById(int id)
+        public Customer GetById(Guid id)
         {
             //Estructurado, más adelante veremos funcional con Linq
             Customer customer = default;
 
             foreach (var item in _list)
             {
-                if(item.Id == id)
+                if (item.Id == id)
                 {
                     customer = item;
                     break;
@@ -72,3 +83,4 @@ namespace Dao.Implementations.Memory
         }
     }
 }
+
