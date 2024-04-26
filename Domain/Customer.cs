@@ -11,10 +11,12 @@ namespace Domain
     /// </summary>
     public class Customer
     {
-        public Guid Id { get; set; }
+        public Guid IdCustomer { get; set; }
         public int Code { get; set; }
 
         public string Name { get; set; }
+
+        public CategoryEnum Category { get; set; }
 
         /// <summary>
         /// Constructor con todos los argumentos...
@@ -25,6 +27,10 @@ namespace Domain
         {
             Code = code;
             Name = name;
+        }
+        public Customer()
+        {
+            
         }
     }
 }

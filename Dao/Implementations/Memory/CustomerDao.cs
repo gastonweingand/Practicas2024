@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Dao.Implementations.Memory
 {
-    public sealed class CustomerDao : IGenericDao<Customer>
+    internal sealed class CustomerDao : ICustomerDao
     {
         #region singleton
-        private readonly static CustomerDao  _instance = new CustomerDao ();
+        private readonly static CustomerDao _instance = new CustomerDao();
 
         public static CustomerDao Current
         {
@@ -24,16 +24,18 @@ namespace Dao.Implementations.Memory
 
         private CustomerDao()
         {
+            _list = new List<Customer>();
+
             for (int i = 1; i <= 10; i++)
             {
                 Customer customer = new Customer(i + 1, i.ToString());
-                customer.Id = Guid.NewGuid();
+                customer.IdCustomer = Guid.NewGuid();
                 _list.Add(customer);
             }
         }
         #endregion
 
-        private static List<Customer> _list = new List<Customer>();
+        private static List<Customer> _list;
 
         public void Add(Customer obj)
         {
@@ -42,7 +44,7 @@ namespace Dao.Implementations.Memory
             //envío el id
 
             //Simulamos que el id es auto-incremental
-            obj.Id = Guid.NewGuid();
+            obj.IdCustomer = Guid.NewGuid();
             _list.Add(obj);
         }
 
@@ -51,14 +53,14 @@ namespace Dao.Implementations.Memory
             return _list;
         }
 
-        public Customer GetById(Guid id)
+        public Customer GetById(Guid idCustomer)
         {
             //Estructurado, más adelante veremos funcional con Linq
             Customer customer = default;
 
             foreach (var item in _list)
             {
-                if (item.Id == id)
+                if (item.IdCustomer == idCustomer)
                 {
                     customer = item;
                     break;
@@ -68,18 +70,28 @@ namespace Dao.Implementations.Memory
             return customer;
         }
 
-        public void Remove(Customer obj)
+        public void Remove(Guid idCustomer)
         {
-            _list.Remove(obj);
+            _list.Remove(GetById(idCustomer));
         }
 
         public void Update(Customer obj)
         {
-            Customer customer = GetById(obj.Id);
+            Customer customer = GetById(obj.IdCustomer);
 
             customer.Code = obj.Code;
             customer.Name = obj.Name;
 
+        }
+
+        public Customer GetByCode(int code)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Customer> GetByName(string name)
+        {
+            throw new NotImplementedException();
         }
     }
 }

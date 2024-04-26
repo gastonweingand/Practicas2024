@@ -1,16 +1,20 @@
 ﻿using Dao.Contracts;
+using Dao.Helpers;
 using Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
+using Dao.Implementations.SqlServer.Mappers;
 
 namespace Dao.Implementations.SqlServer
 {
 
-	public sealed class CustomerDao : IGenericDao<Customer>
-	{
+	internal sealed class CustomerDao : ICustomerDao
+    {
 		#region singleton
 		private readonly static CustomerDao _instance = new CustomerDao();
 
@@ -32,7 +36,7 @@ namespace Dao.Implementations.SqlServer
         #region Statements
         private string InsertStatement
         {
-            get => "INSERT INTO [dbo].[Customer] (Code, Name) VALUES (@Code, @Name)";
+            get => "INSERT INTO [dbo].[Customer] (Code, Name) VALUES (@Code, @Name); Select @@IDentity";
         }
 
         private string UpdateStatement
@@ -59,29 +63,77 @@ namespace Dao.Implementations.SqlServer
 
         public void Add(Customer obj)
         {
-            throw new NotImplementedException();
+            //SqlParameter parameter = new SqlParameter("@IdCustomer", obj.IdCustomer);
+            //parameter.Direction = ParameterDirection.Output;
+
+            object returnValue = SqlHelper.ExecuteScalar("CustomerInsert", CommandType.StoredProcedure,
+                new SqlParameter[] { new SqlParameter("@Code", obj.Code),
+                                     new SqlParameter("@Name", obj.Name) });
+                                    // parameter});
+
+            obj.IdCustomer = Guid.Parse(returnValue.ToString());
         }
 
         public void Update(Customer obj)
         {
-            throw new NotImplementedException();
+            //ExecuteNonQuery
         }
 
-        public void Remove(Customer obj)
+        public void Remove(Guid id)
         {
-            throw new NotImplementedException();
+            //ExecuteNonQuery
         }
 
         public Customer GetById(Guid id)
         {
-            throw new NotImplementedException();
+            Customer customer = default;
+
+            using (var reader = SqlHelper.ExecuteReader(SelectOneStatement, CommandType.Text,
+              new SqlParameter[] { new SqlParameter("@IdCustomer", id) }))
+            {
+                //Mientras tenga algo en mi tabla de Customers
+                if (reader.Read())
+                {
+                    object[] data = new object[reader.FieldCount];
+                    reader.GetValues(data);
+
+                    customer = CustomerMapper.Current.Fill(data);
+                }
+            }
+
+            return customer;
         }
 
         public List<Customer> GetAll()
         {
+            List <Customer> customers = new List<Customer>();
+
+            using (var reader = SqlHelper.ExecuteReader(SelectAllStatement, CommandType.Text,
+                new SqlParameter[] { }))
+            {
+                //Mientras tenga algo en mi tabla de Customers
+                while(reader.Read()) { 
+                
+                    object[] data = new object[reader.FieldCount];
+                    reader.GetValues(data);
+                    //Data Mapper...
+                    Customer customer = CustomerMapper.Current.Fill(data);
+                    customers.Add(customer);
+                }
+            }
+
+            return customers;
+        }
+
+        public Customer GetByCode(int code)
+        {
             throw new NotImplementedException();
         }
 
+        public List<Customer> GetByName(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

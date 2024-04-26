@@ -1,4 +1,5 @@
 ﻿using Dao.Contracts;
+using Dao.Factory;
 using Domain;
 using Logic;
 using Services.Domain;
@@ -17,20 +18,30 @@ namespace UI_Console
         static void Main(string[] args)
         {
             //Hoy tengo una implementación in memory de mi Dao
-            IGenericDao<Customer> customerDao = Dao.Implementations.Memory.CustomerDao.Current;
+            ICustomerDao customerDao = FactoryDao.CustomerDao;
+
+            Customer demo = new Customer();
+            demo.Code = 20;
+            demo.Name = "Otra prueba";
+
+            customerDao.Add(demo);
 
             foreach (var item in customerDao.GetAll())
             {
-                Console.WriteLine($"id: {item.Id}, code: {item.Code}");
+                Console.WriteLine($"id: {item.IdCustomer}, code: {item.Code}");
             }
+
+            Customer customerGonzalez = customerDao.GetById(Guid.Parse("F5705F68-1FBB-44C7-9DFF-ED98021BDE1E"));
+
 
             customerDao.Add(new Customer(0, "Nuevo Producto"));
 
-            Customer customerById = customerDao.GetById(3);
+            Customer customerById = customerDao.GetById(Guid.Parse("71154AF7-E604-446E-8BE3-2A41F5694AE3"));
+            customerById.Category = CategoryEnum.Standard;
 
-            customerDao.Remove(customerById);
+            customerDao.Remove(Guid.Parse("71154AF7-E604-446E-8BE3-2A41F5694AE3"));
 
-            customerById = customerDao.GetById(11);
+            customerById = customerDao.GetById(Guid.Parse("71154AF7-E604-446E-8BE3-2A41F5694AE3"));
             customerById.Name = "Aprendiendo repository pattern";
             customerDao.Update(customerById);
 

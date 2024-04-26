@@ -21,7 +21,7 @@ namespace Dao.Contracts
         /// <param name="obj"></param>
         void Update(T obj);
 
-        void Remove(T obj);
+        void Remove(Guid id);
 
         T GetById(Guid id);
 
