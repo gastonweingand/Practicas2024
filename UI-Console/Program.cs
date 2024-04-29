@@ -22,6 +22,8 @@ namespace UI_Console
         {
             CultureInfo infoEspañol = Thread.CurrentThread.CurrentUICulture;
 
+            "jorgito".ExtentionWithParameters(4, "pepito");
+
             string valueCombo = infoEspañol.DisplayName;
             string dataKey = infoEspañol.Name;
 

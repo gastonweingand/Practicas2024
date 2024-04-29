@@ -19,5 +19,10 @@ namespace Services.Facade.Extentions
         {
             return word;
         }
+
+        public static string ExtentionWithParameters(this string word, int a, string pepe)
+        {
+            return "hola";
+        }
     }
 }
