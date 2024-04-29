@@ -8,9 +8,8 @@ namespace Domain
 {
     public enum CategoryEnum
     {
-        Standard = 100,
+        Standard,
         Premium,
-        //Update...
-        Vip     
+        Vip   
     }
 }

@@ -31,9 +31,9 @@ namespace Dao.Implementations.SqlServer.Mappers
         {
             return new Customer()
             {
-                IdCustomer = Guid.Parse(values[(int)CustomerColumns.IdCustomer].ToString()),
-                Code = int.Parse(values[(int)CustomerColumns.Code].ToString()),
-                Name = values[(int)CustomerColumns.Name].ToString()
+                IdCustomer = Guid.Parse(values[0].ToString()),
+                Code = int.Parse(values[1].ToString()),
+                Name = values[2].ToString()
             };
         }
 

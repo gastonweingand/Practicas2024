@@ -4,11 +4,13 @@ using Domain;
 using Logic;
 using Services.Domain;
 using Services.Facade;
+using Services.Facade.Extentions;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace UI_Console
@@ -17,12 +19,21 @@ namespace UI_Console
     {
         static void Main(string[] args)
         {
+            string culturaActual = Thread.CurrentThread.CurrentUICulture.Name;
+            string word = "Hola".Translate();
+
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-EN");
+
+            culturaActual = Thread.CurrentThread.CurrentUICulture.Name;
+
+            word = "Hola".Translate();
+
             //Hoy tengo una implementación in memory de mi Dao
             ICustomerDao customerDao = FactoryDao.CustomerDao;
-
+            
             Customer demo = new Customer();
-            demo.Code = 20;
-            demo.Name = "Otra prueba";
+            demo.Code = 23;
+            demo.Name = "2604";
 
             customerDao.Add(demo);
 

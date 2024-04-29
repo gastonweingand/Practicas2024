@@ -47,6 +47,7 @@
     <Compile Include="Contracts\IObjectMapper.cs" />
     <Compile Include="Factory\FactoryDao.cs" />
     <Compile Include="Helpers\SqlHelper.cs" />
+    <Compile Include="Implementations\Db2\CustomerDao.cs" />
     <Compile Include="Implementations\Memory\CustomerDao.cs" />
     <Compile Include="Implementations\Mongo\CustomerDao.cs" />
     <Compile Include="Implementations\SqlServer\CustomerDao.cs" />
@@ -62,6 +63,9 @@
   <ItemGroup>
     <Folder Include="Implementations\Mongo\Mappers\" />
     <Folder Include="Implementations\Serialization\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Implementations\SqlServer\Scripts\script.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
