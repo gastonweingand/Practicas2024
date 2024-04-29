@@ -4,9 +4,11 @@ using Domain;
 using Logic;
 using Services.Domain;
 using Services.Facade;
+using Services.Facade.Extentions;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -18,6 +20,21 @@ namespace UI_Console
     {
         static void Main(string[] args)
         {
+            CultureInfo infoEspañol = Thread.CurrentThread.CurrentUICulture;
+
+            string valueCombo = infoEspañol.DisplayName;
+            string dataKey = infoEspañol.Name;
+
+            string lblBienvenidos = "Bienvenidos".Translate();
+            Console.WriteLine($"Bienvenidos en español: {lblBienvenidos}");
+
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+
+            dataKey = Thread.CurrentThread.CurrentUICulture.Name;
+
+            //lblBienvenidos = "Bienvenidos".Translate();
+            Console.WriteLine($"Bienvenidos en inglés: {"Bienvenidos".Translate()}");
+
             //Hoy tengo una implementación in memory de mi Dao
             ICustomerDao customerDao = FactoryDao.CustomerDao;
             
