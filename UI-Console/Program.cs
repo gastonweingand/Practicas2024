@@ -20,6 +20,69 @@ namespace UI_Console
     {
         static void Main(string[] args)
         {
+
+            Patente patente1 = new Patente();
+            patente1.Id = Guid.NewGuid();
+            patente1.Nombre = "Gestión de ventas";
+            patente1.DataKey = "mnuGestionVentas";
+
+            Patente patente2 = new Patente();
+            patente2.Id = Guid.NewGuid();
+            patente2.Nombre = "Visualización de Gestión de ventas";
+            patente2.DataKey = "mnuVisualizacionGestionVentas";
+
+            Familia rolVentas = new Familia(patente1);
+            rolVentas.Id = Guid.NewGuid();
+            rolVentas.Nombre = "Rol de ventas";
+
+            Familia rolVisualizacionVentas = new Familia(patente2);
+            rolVisualizacionVentas.Id = Guid.NewGuid();
+            rolVisualizacionVentas.Nombre = "Rol visualización de ventas";
+
+            Familia administrator = new Familia(rolVentas);
+            administrator.Nombre = "Administrador";
+            administrator.Add(rolVisualizacionVentas);
+
+            Patente patente3 = new Patente();
+            patente3.Id = Guid.NewGuid();
+            patente3.Nombre = "Dashboard general";
+            patente3.DataKey = "mnuDashboardGeneral";
+
+            Usuario pepito = new Usuario();
+            pepito.UserName = "deian";
+            pepito.Accesos.Add(administrator);
+            pepito.Accesos.Add(patente3);
+
+            foreach (var item in pepito.Accesos)
+            {
+                //Cómo sé si item es un elemento primitivo o es una familia?
+                if(item.GetCount() > 0)
+                {
+                    //Soy una familia
+                    Familia familia = item as Familia;
+                    //Hacer una recursiva...
+                    foreach (var item2 in familia.Accesos)
+                    {
+                        //De nuevo el if...de ver si es familia o es patente
+                        if (item.GetCount() == 0)
+                        {
+                            Patente patente = item as Patente;
+                            Console.WriteLine($"Yo soy una opción del menu {patente.DataKey}");
+                        }
+                    }
+                }
+                else
+                {
+                    Patente patente = item as Patente;
+                    Console.WriteLine($"Yo soy una opción del menu {patente.DataKey}");
+                }
+            }
+
+
+
+
+
+
             CultureInfo infoEspañol = Thread.CurrentThread.CurrentUICulture;
 
             "jorgito".ExtentionWithParameters(4, "pepito");
@@ -82,7 +145,7 @@ namespace UI_Console
             customerLogic1.SaveOrUpdate(customer);
 
             //Acceso a objetos y servicios de Arq. Base
-            User user = new User();
+            Usuario user = new Usuario();
             UserService.Register(user);
 
             Console.WriteLine("Test de github");

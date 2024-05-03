@@ -9,12 +9,12 @@ namespace Services.Facade
 {
     public static class UserService
     {
-        public static void Register(User user) 
+        public static void Register(Usuario user) 
         { 
         
         }
 
-        public static bool Validate(User user)
+        public static bool Validate(Usuario user)
         {
             return false;
         }
