@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Linq;
 
 
 
@@ -28,7 +29,31 @@ public class Usuario {
 
     public List<Patente> GetPatentes()
     {
-        return new List<Patente>();
+        List<Patente> patentes= new List<Patente>();
+
+        GetAllPatentes(Accesos, patentes);
+
+        return patentes;
+    }
+
+    private void GetAllPatentes(List<Acceso> accesos, List<Patente> patentesReturn)
+    {
+        foreach(var acceso in accesos)
+        {
+            //Cuál sería mi condición de corte?
+            //Significa que estoy ante un elemento de tipo Leaf, Hoja, Primitivo
+            if (acceso.GetCount() == 0)
+            {
+                //Podría pasar que la patente ya esté agregada (Similar a un distinct)
+                if(!patentesReturn.Any(o => o.Id == acceso.Id))
+                    patentesReturn.Add(acceso as Patente);
+            }
+            else
+            {
+                //Tengo que tratar a mi "acceso" como si fuese una familia
+                GetAllPatentes((acceso as Familia).Accesos, patentesReturn);
+            }
+        }
     }
 
     public List<Familia> GetFamilias() {  

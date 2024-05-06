@@ -20,7 +20,6 @@ namespace UI_Console
     {
         static void Main(string[] args)
         {
-
             Patente patente1 = new Patente();
             patente1.Id = Guid.NewGuid();
             patente1.Nombre = "Gestión de ventas";
@@ -42,6 +41,7 @@ namespace UI_Console
             Familia administrator = new Familia(rolVentas);
             administrator.Nombre = "Administrador";
             administrator.Add(rolVisualizacionVentas);
+            administrator.Add(patente1);
 
             Patente patente3 = new Patente();
             patente3.Id = Guid.NewGuid();
@@ -52,6 +52,11 @@ namespace UI_Console
             pepito.UserName = "deian";
             pepito.Accesos.Add(administrator);
             pepito.Accesos.Add(patente3);
+
+            foreach (var item in pepito.GetPatentes())
+            {
+                Console.WriteLine($"{item.DataKey}");
+            }
 
             foreach (var item in pepito.Accesos)
             {
