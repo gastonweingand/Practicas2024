@@ -56,10 +56,30 @@ public class Usuario {
         }
     }
 
-    public List<Familia> GetFamilias() {  
+    public List<Familia> GetFamilias() {
 
-        return new List<Familia>(); 
+        List<Familia> familias= new List<Familia>();
 
+        GetAllFamilias(Accesos, familias);
+
+        return familias;
+
+    }
+
+    private void GetAllFamilias(List<Acceso> accesos, List<Familia> famililaReturn)
+    {
+        foreach (var acceso in accesos)
+        {
+            //Cuál sería mi condición de corte?
+            //Significa que estoy ante un elemento de tipo Composite
+            if (acceso.GetCount() > 0)
+            {
+                if (!famililaReturn.Any(o => o.Id == acceso.Id))
+                    famililaReturn.Add(acceso as Familia);
+
+                GetAllFamilias((acceso as Familia).Accesos, famililaReturn);
+            }
+        }
     }
 
 }//end User

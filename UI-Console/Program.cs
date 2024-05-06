@@ -53,34 +53,16 @@ namespace UI_Console
             pepito.Accesos.Add(administrator);
             pepito.Accesos.Add(patente3);
 
+            Console.WriteLine("Patentes del usuario");
             foreach (var item in pepito.GetPatentes())
             {
                 Console.WriteLine($"{item.DataKey}");
             }
 
-            foreach (var item in pepito.Accesos)
+            Console.WriteLine("Famililas del usuario");
+            foreach (var item in pepito.GetFamilias())
             {
-                //Cómo sé si item es un elemento primitivo o es una familia?
-                if(item.GetCount() > 0)
-                {
-                    //Soy una familia
-                    Familia familia = item as Familia;
-                    //Hacer una recursiva...
-                    foreach (var item2 in familia.Accesos)
-                    {
-                        //De nuevo el if...de ver si es familia o es patente
-                        if (item.GetCount() == 0)
-                        {
-                            Patente patente = item as Patente;
-                            Console.WriteLine($"Yo soy una opción del menu {patente.DataKey}");
-                        }
-                    }
-                }
-                else
-                {
-                    Patente patente = item as Patente;
-                    Console.WriteLine($"Yo soy una opción del menu {patente.DataKey}");
-                }
+                Console.WriteLine($"{item.Nombre}");
             }
 
 
