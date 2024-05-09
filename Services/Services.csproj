@@ -43,16 +43,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dao\LanguageDao.cs" />
+    <Compile Include="Dao\LoggerDao.cs" />
+    <Compile Include="Dao\ILoggerDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="Domain\DemoComposite\Acceso.cs" />
     <Compile Include="Domain\DemoComposite\Familia.cs" />
     <Compile Include="Domain\DemoComposite\Patente.cs" />
     <Compile Include="Domain\DemoComposite\Usuario.cs" />
     <Compile Include="Domain\Exceptions\WordNotFoundException.cs" />
+    <Compile Include="Domain\Log.cs" />
     <Compile Include="Facade\Extentions\StringExtention.cs" />
     <Compile Include="Facade\LanguageService.cs" />
+    <Compile Include="Facade\LoggerService.cs" />
     <Compile Include="Facade\UserService.cs" />
     <Compile Include="Logic\LanguageLogic.cs" />
+    <Compile Include="Logic\LoggerLogic.cs" />
     <Compile Include="Logic\UserLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

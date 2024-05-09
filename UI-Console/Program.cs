@@ -8,6 +8,7 @@ using Services.Facade.Extentions;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,21 @@ namespace UI_Console
     {
         static void Main(string[] args)
         {
+            LoggerService.WriteLog("Bienvenidos al mundo de las bitácoras");
+
+            Log log = new Log("mensaje", TraceLevel.Warning);
+
+            LoggerService.WriteLog(log);
+
+            try
+            {
+                throw new Exception("Exception custom");
+            }
+            catch (Exception ex)
+            {
+                LoggerService.WriteException(ex);
+            }
+
             Patente patente1 = new Patente();
             patente1.Id = Guid.NewGuid();
             patente1.Nombre = "Gestión de ventas";
@@ -65,11 +81,6 @@ namespace UI_Console
                 Console.WriteLine($"{item.Nombre}");
             }
 
-
-
-
-
-
             CultureInfo infoEspañol = Thread.CurrentThread.CurrentUICulture;
 
             "jorgito".ExtentionWithParameters(4, "pepito");
@@ -91,8 +102,8 @@ namespace UI_Console
             ICustomerDao customerDao = FactoryDao.CustomerDao;
             
             Customer demo = new Customer();
-            demo.Code = 23;
-            demo.Name = "2604";
+            demo.Code = 90;
+            demo.Name = "0905";
 
             customerDao.Add(demo);
 
