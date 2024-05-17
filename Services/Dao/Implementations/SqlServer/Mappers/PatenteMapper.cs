@@ -33,7 +33,7 @@ namespace Services.Dao.Implementations.SqlServer.Mappers
             patente.Id = Guid.Parse(values[0].ToString());
             patente.Nombre = values[1].ToString();
             patente.DataKey = values[2].ToString();
-            //patente.TipoAcceso = (TipoAcceso)Enum.Parse(typeof(TipoAcceso).GetType(), values[3].ToString());
+            patente.TipoAcceso = (TipoAcceso) int.Parse(values[3].ToString());
 
 			return patente;
         }
