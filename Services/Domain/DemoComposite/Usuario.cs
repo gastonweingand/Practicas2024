@@ -16,6 +16,7 @@ using System.Linq;
 
 public class Usuario {
 
+    public Guid IdUsuario { get; set; }
     public string UserName { get; set; }
 
     public string Password { get; set; }
@@ -24,8 +25,13 @@ public class Usuario {
     public List<Acceso> Accesos = new List<Acceso>();
 
 	public Usuario(){
-
+        IdUsuario = Guid.NewGuid();
 	}
+
+    public Usuario(Guid idUsuario)
+    {
+        this.IdUsuario = idUsuario;
+    }
 
     public List<Patente> GetPatentes()
     {
