@@ -2,6 +2,7 @@
 using Dao.Factory;
 using Domain;
 using Logic;
+using Services.Dao.Implementations.SqlServer;
 using Services.Domain;
 using Services.Facade;
 using Services.Facade.Extentions;
@@ -21,6 +22,12 @@ namespace UI_Console
     {
         static void Main(string[] args)
         {
+            Familia familia = FamiliaRepository.Current.GetById(Guid.Parse("9A818C81-BA52-490C-A4C3-97F30A5DB69C"));
+
+            Console.WriteLine(familia.Nombre);
+            Console.WriteLine(familia.Accesos.Count);
+
+
             LoggerService.WriteLog("Bienvenidos al mundo de las bitácoras");
 
             Log log = new Log("mensaje", TraceLevel.Warning);
@@ -68,6 +75,9 @@ namespace UI_Console
             pepito.UserName = "deian";
             pepito.Accesos.Add(administrator);
             pepito.Accesos.Add(patente3);
+
+            UsuarioRepository.Current.Add(pepito);
+
 
             Console.WriteLine("Patentes del usuario");
             foreach (var item in pepito.GetPatentes())

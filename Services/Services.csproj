@@ -42,10 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dao\Contracts\IGenericDao.cs" />
+    <Compile Include="Dao\Contracts\IJoinRepository.cs" />
+    <Compile Include="Dao\Contracts\IObjectMapper.cs" />
+    <Compile Include="Dao\Implementations\SqlServer\FamiliaPatenteRepository.cs" />
+    <Compile Include="Dao\Implementations\SqlServer\FamiliaRepository.cs" />
+    <Compile Include="Dao\Implementations\SqlServer\Mappers\FamiliaMapper.cs" />
+    <Compile Include="Dao\Implementations\SqlServer\Mappers\PatenteMapper.cs" />
+    <Compile Include="Dao\Implementations\SqlServer\PatenteRepository.cs" />
+    <Compile Include="Dao\Implementations\SqlServer\UsuarioRepository.cs" />
     <Compile Include="Dao\LanguageDao.cs" />
     <Compile Include="Dao\LoggerDao.cs" />
     <Compile Include="Dao\ILoggerDao.cs" />
-    <Compile Include="Dao\UserDao.cs" />
     <Compile Include="Domain\DemoComposite\Acceso.cs" />
     <Compile Include="Domain\DemoComposite\Familia.cs" />
     <Compile Include="Domain\DemoComposite\Patente.cs" />
@@ -56,10 +64,16 @@
     <Compile Include="Facade\LanguageService.cs" />
     <Compile Include="Facade\LoggerService.cs" />
     <Compile Include="Facade\UserService.cs" />
+    <Compile Include="Dao\Helpers\SqlHelper.cs" />
     <Compile Include="Logic\LanguageLogic.cs" />
     <Compile Include="Logic\LoggerLogic.cs" />
     <Compile Include="Logic\UserLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dao\Scripts\scriptSecurityDB.sql" />
+    <Content Include="Dao\Scripts\SecurityPP con datos.sql" />
+    <Content Include="Dao\Scripts\StoredProcedures.sql" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Dao
+namespace Services.Dao.Contracts
 {
-    internal class UserDao
+    internal interface IJoinRepository<T>
     {
+        void Join(T entity);
     }
 }

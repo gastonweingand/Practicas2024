@@ -18,10 +18,11 @@ public class Familia : Acceso
 
     public string Descripcion { get; set; }
 
-    public Familia(Acceso acceso)
+    public Familia(Acceso acceso = null)
     {
-        //acceso no debe ser null
-        accesos.Add(acceso);
+        if(acceso!=null)
+            //acceso no debe ser null
+            accesos.Add(acceso);
     }
 
     /// 
