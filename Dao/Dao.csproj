@@ -45,13 +45,20 @@
     <Compile Include="Contracts\ICustomerDao.cs" />
     <Compile Include="Contracts\IGenericDao.cs" />
     <Compile Include="Contracts\IObjectMapper.cs" />
+    <Compile Include="Contracts\UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="Contracts\UnitOfWork\IUnitOfWorkAdapter.cs" />
+    <Compile Include="Contracts\UnitOfWork\IUnitOfWorkRepository.cs" />
     <Compile Include="Factory\FactoryDao.cs" />
-    <Compile Include="Helpers\SqlHelper.cs" />
+    <Compile Include="Implementations\SqlServer\Helpers\Repository.cs" />
+    <Compile Include="Implementations\SqlServer\Helpers\SqlHelper.cs" />
     <Compile Include="Implementations\Db2\CustomerDao.cs" />
     <Compile Include="Implementations\Memory\CustomerDao.cs" />
     <Compile Include="Implementations\Mongo\CustomerDao.cs" />
     <Compile Include="Implementations\SqlServer\CustomerDao.cs" />
     <Compile Include="Implementations\SqlServer\Mappers\CustomerMapper.cs" />
+    <Compile Include="Implementations\SqlServer\UnitOfWork\UnitOfWorkSqlServer.cs" />
+    <Compile Include="Implementations\SqlServer\UnitOfWork\UnitOfWorkSqlServerAdapter.cs" />
+    <Compile Include="Implementations\SqlServer\UnitOfWork\UnitOfWorkSqlServerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

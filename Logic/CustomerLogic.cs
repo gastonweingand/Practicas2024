@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using Dao.Factory;
+using Domain;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -23,41 +24,18 @@ namespace Logic
 
         public static CustomerLogic GetInstance()
         {
-
-        //    //Verificar si existe o no una instacia?
-        //    if (instance is null)
-        //    {
-        //        //th2
-        //        //th1
-        //        lock (instanceLock)
-        //        {
-        //            //th1
-        //            if (instance is null) { 
-        //                //th1
-        //                instance = new CustomerLogic();
-        //            }
-        //        }
-        //    }
-
             return instance;
         }
 
-        //public static CustomerLogic Instance { 
-        //    get
-        //    {
-        //        //Verificar si existe o no una instacia?
-        //        if (instance is null)
-        //            instance = new CustomerLogic();
-
-        //        return instance;
-        //    }
-        //}
 
         public void SaveOrUpdate(Customer customer)
         {
-            //Debo validar si la entidad debe ser Insertada o updeteada
+            using (var context = FactoryDao.UnitOfWork.Create())
+            {
+                context.Repositories.CustomerRepository.Add(customer);
 
-
+                context.SaveChanges();
+            }
         }
         public void Delete(Customer customer)
         {

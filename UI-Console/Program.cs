@@ -22,6 +22,13 @@ namespace UI_Console
     {
         static void Main(string[] args)
         {
+            Customer demoTx = new Customer();
+            demoTx.Code = 1306;
+            demoTx.Name = "Test Txt2";
+
+            CustomerLogic.GetInstance().SaveOrUpdate(demoTx);
+
+
             Familia familia = FamiliaRepository.Current.GetById(Guid.Parse("9A818C81-BA52-490C-A4C3-97F30A5DB69C"));
 
             Console.WriteLine(familia.Nombre);

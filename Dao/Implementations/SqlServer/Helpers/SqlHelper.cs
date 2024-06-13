@@ -4,11 +4,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 
-namespace Dao.Helpers
+namespace Dao.Implementations.SqlServer.Helpers
 {
     internal static class SqlHelper
     {
-        readonly static string conString;
+        public readonly static string conString;
 
         static SqlHelper()
         {

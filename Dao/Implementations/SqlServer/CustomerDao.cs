@@ -1,5 +1,4 @@
 ﻿using Dao.Contracts;
-using Dao.Helpers;
 using Domain;
 using System;
 using System.Collections.Generic;
@@ -9,29 +8,18 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using Dao.Implementations.SqlServer.Mappers;
+using Dao.Implementations.SqlServer.Helpers;
 
 namespace Dao.Implementations.SqlServer
 {
 
-	internal sealed class CustomerDao : ICustomerDao
+	internal sealed class CustomerDao : SqlTransactRepository, ICustomerDao
     {
-		#region singleton
-		private readonly static CustomerDao _instance = new CustomerDao();
+		public CustomerDao(SqlConnection context, SqlTransaction _transaction)
+            : base(context, _transaction)
+        {
 
-		public static CustomerDao Current
-		{
-			get
-			{
-				return _instance;
-			}
 		}
-
-		private CustomerDao()
-		{
-			//Implent here the initialization of your singleton
-		}
-        #endregion
-
 
         #region Statements
         private string InsertStatement
@@ -66,7 +54,7 @@ namespace Dao.Implementations.SqlServer
             //SqlParameter parameter = new SqlParameter("@IdCustomer", obj.IdCustomer);
             //parameter.Direction = ParameterDirection.Output;
 
-            object returnValue = SqlHelper.ExecuteScalar("CustomerInsert", CommandType.StoredProcedure,
+            object returnValue = ExecuteScalar("CustomerInsert", CommandType.StoredProcedure,
                 new SqlParameter[] { new SqlParameter("@Code", obj.Code),
                                      new SqlParameter("@Name", obj.Name) });
                                     // parameter});
@@ -88,7 +76,7 @@ namespace Dao.Implementations.SqlServer
         {
             Customer customer = default;
 
-            using (var reader = SqlHelper.ExecuteReader(SelectOneStatement, CommandType.Text,
+            using (var reader = ExecuteReader(SelectOneStatement, CommandType.Text,
               new SqlParameter[] { new SqlParameter("@IdCustomer", id) }))
             {
                 //Mientras tenga algo en mi tabla de Customers
@@ -108,7 +96,7 @@ namespace Dao.Implementations.SqlServer
         {
             List <Customer> customers = new List<Customer>();
 
-            using (var reader = SqlHelper.ExecuteReader(SelectAllStatement, CommandType.Text,
+            using (var reader = ExecuteReader(SelectAllStatement, CommandType.Text,
                 new SqlParameter[] { }))
             {
                 //Mientras tenga algo en mi tabla de Customers

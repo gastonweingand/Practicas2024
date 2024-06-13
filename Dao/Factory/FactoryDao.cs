@@ -1,4 +1,5 @@
 ﻿using Dao.Contracts;
+using Dao.Contracts.UnitOfWork;
 using Dao.Implementations.SqlServer;
 using System;
 using System.Collections.Generic;
@@ -19,18 +20,26 @@ namespace Dao.Factory
         static FactoryDao()
         {
             backendType = int.Parse(ConfigurationManager.AppSettings["BackendType"]);
+            UnitOfWork = new Implementations.SqlServer.UnitOfWork.UnitOfWorkSqlServer();
         }
 
+        /// <summary>
+        /// Dao sin Tx
+        /// </summary>
         public static ICustomerDao CustomerDao
         {
             get
             {
                 if(backendType == (int) BackendType.Memory)
                     return Dao.Implementations.Memory.CustomerDao.Current;
-                else
-                    return Dao.Implementations.SqlServer.CustomerDao.Current;
+
+                throw new Exception();
+                //else
+                //  return Dao.Implementations.SqlServer.CustomerDao.Current;
             }
         }
+
+        public static IUnitOfWork UnitOfWork { get; private set; }
     }
 
     internal enum BackendType
