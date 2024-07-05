@@ -17,9 +17,12 @@ namespace Dao.Factory
         /// </summary>
         /// 
         private static int backendType;
+        private static string customerDao;
         static FactoryDao()
         {
             backendType = int.Parse(ConfigurationManager.AppSettings["BackendType"]);
+            customerDao = ConfigurationManager.AppSettings["CustomerConcreteDAO"];
+
             UnitOfWork = new Implementations.SqlServer.UnitOfWork.UnitOfWorkSqlServer();
         }
 
@@ -30,10 +33,14 @@ namespace Dao.Factory
         {
             get
             {
-                if(backendType == (int) BackendType.Memory)
-                    return Dao.Implementations.Memory.CustomerDao.Current;
+                Type customerType = Type.GetType(customerDao);
 
-                throw new Exception();
+                return Activator.CreateInstance(customerType) as ICustomerDao;
+
+                //if(backendType == (int) BackendType.Memory)
+                //    return Dao.Implementations.Memory.CustomerDao.Current;
+
+                //throw new Exception();
                 //else
                 //  return Dao.Implementations.SqlServer.CustomerDao.Current;
             }

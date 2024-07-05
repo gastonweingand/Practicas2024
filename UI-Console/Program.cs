@@ -23,7 +23,7 @@ namespace UI_Console
         static void Main(string[] args)
         {
             Customer demoTx = new Customer();
-            demoTx.Code = 1306;
+            demoTx.Code = 13062024;
             demoTx.Name = "Test Txt2";
 
             CustomerLogic.GetInstance().SaveOrUpdate(demoTx);
@@ -116,8 +116,8 @@ namespace UI_Console
             Console.WriteLine($"Bienvenidos en inglés: {"Bienvenidos".Translate()}");
 
             //Hoy tengo una implementación in memory de mi Dao
+            //ICustomerDao customerDao = FactoryDao.CustomerDao;
             ICustomerDao customerDao = FactoryDao.CustomerDao;
-            
             Customer demo = new Customer();
             demo.Code = 90;
             demo.Name = "0905";

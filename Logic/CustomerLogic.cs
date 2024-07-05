@@ -30,12 +30,22 @@ namespace Logic
 
         public void SaveOrUpdate(Customer customer)
         {
-            using (var context = FactoryDao.UnitOfWork.Create())
+            try
             {
-                context.Repositories.CustomerRepository.Add(customer);
+                using (var context = FactoryDao.UnitOfWork.Create())
+                {
+                    context.Repositories.CustomerRepository.Add(customer);
 
-                context.SaveChanges();
+                    //if (X > Y) throw new Exception("Esto es una exp personalizada");
+
+                    context.SaveChanges();
+                }
             }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
         }
         public void Delete(Customer customer)
         {

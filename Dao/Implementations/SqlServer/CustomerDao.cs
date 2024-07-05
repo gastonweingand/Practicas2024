@@ -21,6 +21,7 @@ namespace Dao.Implementations.SqlServer
 
 		}
 
+
         #region Statements
         private string InsertStatement
         {

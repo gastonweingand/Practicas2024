@@ -49,7 +49,7 @@
     <Compile Include="Contracts\UnitOfWork\IUnitOfWorkAdapter.cs" />
     <Compile Include="Contracts\UnitOfWork\IUnitOfWorkRepository.cs" />
     <Compile Include="Factory\FactoryDao.cs" />
-    <Compile Include="Implementations\SqlServer\Helpers\Repository.cs" />
+    <Compile Include="Implementations\SqlServer\Helpers\SqlTransactRepository.cs" />
     <Compile Include="Implementations\SqlServer\Helpers\SqlHelper.cs" />
     <Compile Include="Implementations\Db2\CustomerDao.cs" />
     <Compile Include="Implementations\Memory\CustomerDao.cs" />
