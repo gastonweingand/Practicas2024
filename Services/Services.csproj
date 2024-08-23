@@ -60,6 +60,7 @@
     <Compile Include="Domain\DemoComposite\Usuario.cs" />
     <Compile Include="Domain\Exceptions\WordNotFoundException.cs" />
     <Compile Include="Domain\Log.cs" />
+    <Compile Include="Facade\CryptographyService.cs" />
     <Compile Include="Facade\Extentions\StringExtention.cs" />
     <Compile Include="Facade\LanguageService.cs" />
     <Compile Include="Facade\LoggerService.cs" />

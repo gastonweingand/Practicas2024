@@ -22,6 +22,30 @@ namespace UI_Console
     {
         static void Main(string[] args)
         {
+            String monto = "187944,89";
+
+            String encryptMonto = CryptographyService.Encrypt(monto);
+            Console.WriteLine($"Monto encriptado {encryptMonto}");
+
+            String montoOriginal = CryptographyService.Decrypt(encryptMonto);
+            Console.WriteLine($"Monto desencriptado {montoOriginal}");
+
+
+
+            String password = "gaston123";
+            string hashPass = CryptographyService.HashMd5("gastonweingand" + password);
+
+            String passwordNueva = "gaston123";
+
+            if(hashPass == CryptographyService.HashMd5("gastonweingand" + passwordNueva))
+            {
+                Console.WriteLine("Bienvenido al sistema");
+            }
+            else
+            {
+                Console.WriteLine("Datos erroneos");
+            }
+
             Customer demoTx = new Customer();
             demoTx.Code = 13062024;
             demoTx.Name = "Test Txt2";
