@@ -17,7 +17,7 @@ namespace MultiThreading
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
-            
+
         }
 
         private void btnMostrarMensaje_Click(object sender, EventArgs e)
@@ -26,8 +26,12 @@ namespace MultiThreading
             MessageBox.Show("Aprendiendo sobre hilos");
         }
 
-        private void EjecutarBarraProgreso()
+        private void EjecutarBarraProgreso(object selectedColor)
         {
+            Color color = (Color)selectedColor;
+
+            progressBar1.ForeColor = color;
+
             for (int i = 0; i < 10; i++)
             {
                 progressBar1.PerformStep();
@@ -43,8 +47,11 @@ namespace MultiThreading
 
         private void LanzarHiloBarra()
         {
-            Thread th = new Thread(EjecutarBarraProgreso);
-            th.Start();
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Thread th = new Thread(EjecutarBarraProgreso);
+                th.Start(colorDialog.Color);
+            }
         }
     }
 }
