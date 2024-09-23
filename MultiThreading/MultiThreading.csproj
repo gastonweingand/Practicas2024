@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CarreraCaballos\Caballo.cs" />
+    <Compile Include="CarreraCaballos\Carrera.cs" />
     <Compile Include="Parametrizacion\ProgressBarParam.cs" />
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>

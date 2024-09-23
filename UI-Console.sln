@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dao", "Dao\Dao.csproj", "{0785B123-8C33-43AD-8B4A-4111365031A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Patterns", "Patterns\Patterns.csproj", "{6993D96F-554F-4CE0-81A1-7126BCCEE755}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatternsAndHilos", "Patterns\PatternsAndHilos.csproj", "{6993D96F-554F-4CE0-81A1-7126BCCEE755}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreading", "MultiThreading\MultiThreading.csproj", "{9FD81479-2B67-4240-B2A8-FF75FD4401D1}"
 EndProject

@@ -1,5 +1,6 @@
 ﻿using Patterns.Bridge;
 using Patterns.Proxy;
+using PatternsAndHilos.CarreraCaballos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,11 @@ namespace Patterns
     {
         static void Main(string[] args)
         {
+            CarreraManager.LanzarHilos();
+            CarreraManager.MostrarResultados();
+
             //Bridge();
-            Proxy();
+            //Proxy();
         }
 
         private static void Proxy()
@@ -36,7 +40,7 @@ namespace Patterns
 
             Notificacion notificacionBaja = new NotificacionBajaPrioridad(canalCorreo, "Mensaje de baja prioridad");
             Notificacion notificacionAlta = new NotificacionAltaPrioridad(canalSMS, "Mensaje de alta prioridad");
-            Notificacion notificacionMedia = new NotificacionMediaPrioridad(canalWp, "Mensaje de alta prioridad");
+            Notificacion notificacionMedia = new NotificacionMediaPrioridad(canalWp, "Mensaje de media prioridad");
 
             List<Notificacion> notificaciones = new List<Notificacion>();
             notificaciones.Add(notificacionBaja);

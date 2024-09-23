@@ -51,6 +51,8 @@
     <Compile Include="Bridge\NotificacionAltaPrioridad.cs" />
     <Compile Include="Bridge\NotificacionBajaPrioridad.cs" />
     <Compile Include="Bridge\NotificacionMediaPrioridad.cs" />
+    <Compile Include="CarreraCaballos\Caballo.cs" />
+    <Compile Include="CarreraCaballos\CarreraManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proxy\IImagen.cs" />
