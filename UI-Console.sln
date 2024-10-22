@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatternsAndHilos", "Pattern
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreading", "MultiThreading\MultiThreading.csproj", "{9FD81479-2B67-4240-B2A8-FF75FD4401D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PracticasService", "PracticasService\PracticasService.csproj", "{645647C3-35C8-4AFF-BE55-CC37D4E7AAD0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{9FD81479-2B67-4240-B2A8-FF75FD4401D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FD81479-2B67-4240-B2A8-FF75FD4401D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FD81479-2B67-4240-B2A8-FF75FD4401D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{645647C3-35C8-4AFF-BE55-CC37D4E7AAD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{645647C3-35C8-4AFF-BE55-CC37D4E7AAD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{645647C3-35C8-4AFF-BE55-CC37D4E7AAD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{645647C3-35C8-4AFF-BE55-CC37D4E7AAD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
